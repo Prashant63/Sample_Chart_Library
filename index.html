@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="style/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/minewhat.css">
+		<script src="script/angular.min.js"></script>
+		<script src="script/node_modules/angular-chart.js/node_modules/chart.js/dist/Chart.js"></script>
+		<script src="script/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+		<script src="script/app.js"></script>
+		<script src="controller/mineWhat.js"></script>
+	</head>
+
+	<body ng-app="app">
+	<div ng-controller="mineWhat">
+		<nav class="nav_bar">
+			MY APPLICATION
+		</nav>
+
+		<div class="heading">
+			Sample Page
+		</div>
+
+		<div class="flex-container">
+
+			<div class="table_content">
+				<p>REVENUE BY ACQUISTION SOURCE</p>
+				<table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>Source</th>
+				        <th>Revenue</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr ng-repeat="revenue in revenueData">
+				        <td>{{(revenue.source).toUpperCase()}}</td>
+				        <td>${{revenue.revenue}}</td>
+				      </tr>
+				    </tbody>
+				  </table>
+			</div>
+
+			<div class="graph_content">
+				<div class="device">
+					<div><span style="background-color:#FFB377;"></span><span>MOBILE</span></div>
+					<div><span style="background-color:#8CD198;"></span><span>IPAD</span></div>
+					<div><span style="background-color:#FB6F70;"></span><span>DESKTOP</span></div>
+				</div>
+				<canvas id="doughnut" class="chart chart-doughnut" chart-data = "data" chart-labels = "labels" chart-colors = "colors" chart-options="options"></canvas>
+			</div>
+		</div>
+
+		<div class="flex-container">
+			<div class="items" ng-repeat="product in retailProduct track by $index">
+				<img src="{{product.img}}">
+				<div>
+					<p>{{product.name}}</p>
+					<p>+154 Views 2 days ago</p>
+				</div>
+
+
+				<div class="description">
+					<table>
+						<tr>
+							<td>Views</td>
+							<td>{{product.views}}</td>
+						</tr>
+						<tr>
+							<td>Purchase</td>
+							<td>{{product.purchase}}</td>
+						</tr>
+						<tr>
+							<td>Conversion Rate</td>
+							<td>{{product.rate}}%</td>
+						</tr>
+						<tr>
+							<td>Revenue</td>
+							<td>${{product.revenue}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
